@@ -267,7 +267,7 @@ def configure_project(package_name: str) -> None:
 
     if PACKAGE_NAME:
         pritn(f"{PACKAGE_NAME=}")
-        LOGGING.set_project_logging(PACKAGE_NAME)
+        # LOGGING.set_project_logging(PACKAGE_NAME)
 
 
 def configure_logging(logging_config: dict[str, Any]) -> None:
