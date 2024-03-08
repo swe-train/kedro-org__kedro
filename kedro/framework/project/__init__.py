@@ -221,7 +221,7 @@ class _ProjectLogging(UserDict):
             "KEDRO_LOGGING_CONFIG", Path(__file__).parent / "default_logging.yml"
         )
         logging_config = Path(path).read_text(encoding="utf-8")
-        self.configure(yaml.safe_load(logging_config))
+        # self.configure(yaml.safe_load(logging_config))
 
     def configure(self, logging_config: dict[str, Any]) -> None:
         """Configure project logging using ``logging_config`` (e.g. from project
@@ -266,6 +266,7 @@ def configure_project(package_name: str) -> None:
     PACKAGE_NAME = package_name
 
     if PACKAGE_NAME:
+        pritn(f"{PACKAGE_NAME=}")
         LOGGING.set_project_logging(PACKAGE_NAME)
 
 
