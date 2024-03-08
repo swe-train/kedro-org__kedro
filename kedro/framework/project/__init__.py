@@ -266,7 +266,7 @@ def configure_project(package_name: str) -> None:
     PACKAGE_NAME = package_name
 
     if PACKAGE_NAME:
-        pritn(f"{PACKAGE_NAME=}")
+        print(f"{PACKAGE_NAME=}")
         # LOGGING.set_project_logging(PACKAGE_NAME)
 
 
