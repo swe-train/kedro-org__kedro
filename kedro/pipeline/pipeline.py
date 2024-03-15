@@ -82,6 +82,7 @@ class Pipeline:
         nodes: Iterable[Node | Pipeline],
         *,
         tags: str | Iterable[str] | None = None,
+        custom_order:list[Node] = None,
     ):
         """Initialise ``Pipeline`` with a list of ``Node`` instances.
 
@@ -129,6 +130,7 @@ class Pipeline:
             >>>
 
         """
+        self.custom_order = custom_order
         if nodes is None:
             raise ValueError(
                 "'nodes' argument of 'Pipeline' is None. It must be an "
@@ -336,6 +338,13 @@ class Pipeline:
             for output in parent.outputs:
                 for child in self._nodes_by_input[_strip_transcoding(output)]:
                     dependencies[child].add(parent)
+        if self.custom_order:
+            print(self.custom_order)
+            # print(list(zip(self.custom_order, self.custom_order[1:])))
+            for first, second in zip(self.custom_order, self.custom_order[1:]):
+                print("DEBUG!", first, second)
+                # Assume 2nd depend on 1st for demo purpose.
+                dependencies[second].add(first) # It's not technically a child of it but we trick toposort to think it is.
 
         return dependencies
 
